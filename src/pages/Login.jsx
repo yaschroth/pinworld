@@ -1,6 +1,8 @@
 import { useState } from 'react'
 import { useNavigate } from 'react-router-dom'
+import { MapContainer, TileLayer } from 'react-leaflet'
 import { useAuth } from '../hooks/useAuth'
+import 'leaflet/dist/leaflet.css'
 import './Login.css'
 
 function Login() {
@@ -45,6 +47,23 @@ function Login() {
 
   return (
     <div className="login-page">
+      <div className="login-map-background">
+        <MapContainer
+          center={[20, 0]}
+          zoom={2}
+          zoomControl={false}
+          dragging={false}
+          scrollWheelZoom={false}
+          doubleClickZoom={false}
+          touchZoom={false}
+          keyboard={false}
+          attributionControl={false}
+        >
+          <TileLayer
+            url="https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}{r}.png"
+          />
+        </MapContainer>
+      </div>
       <div className="login-card">
         <div className="login-header">
           <h1>PinWorld</h1>
