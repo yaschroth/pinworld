@@ -1,0 +1,404 @@
+/* ==========================================================================
+   Map Controls Component
+   ========================================================================== */
+
+.map-controls {
+  position: absolute;
+  top: var(--space-4);
+  left: var(--space-4);
+  z-index: var(--z-fixed);
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-3);
+}
+
+/* --------------------------------------------------------------------------
+   Search Container
+   -------------------------------------------------------------------------- */
+
+.search-container {
+  position: relative;
+  width: 300px;
+}
+
+.search-input-wrapper {
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+
+.search-icon {
+  position: absolute;
+  left: var(--space-3);
+  color: var(--text-tertiary);
+  pointer-events: none;
+  display: flex;
+  align-items: center;
+}
+
+.search-input {
+  width: 100%;
+  height: 44px;
+  padding: var(--space-2) var(--space-10) var(--space-2) var(--space-10);
+  border: 2px solid var(--border-light);
+  border-radius: var(--radius-xl);
+  font-size: var(--font-size-sm);
+  background: var(--bg-primary);
+  box-shadow: var(--shadow-md);
+  transition: var(--transition-all);
+}
+
+.search-input:focus {
+  outline: none;
+  border-color: var(--color-primary-500);
+  box-shadow: var(--shadow-focus), var(--shadow-md);
+}
+
+.search-input::placeholder {
+  color: var(--text-tertiary);
+}
+
+.search-spinner {
+  position: absolute;
+  right: var(--space-3);
+  width: 18px;
+  height: 18px;
+  border: 2px solid var(--border-light);
+  border-top-color: var(--color-primary-500);
+  border-radius: var(--radius-full);
+  animation: spin 0.7s linear infinite;
+}
+
+.search-clear {
+  position: absolute;
+  right: var(--space-3);
+  width: 24px;
+  height: 24px;
+  border: none;
+  background: var(--color-gray-200);
+  color: var(--text-secondary);
+  border-radius: var(--radius-full);
+  cursor: pointer;
+  font-size: 16px;
+  line-height: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: var(--transition-colors);
+}
+
+.search-clear:hover {
+  background: var(--color-gray-300);
+  color: var(--text-primary);
+}
+
+/* --------------------------------------------------------------------------
+   Search Results
+   -------------------------------------------------------------------------- */
+
+.search-results {
+  position: absolute;
+  top: calc(100% + var(--space-2));
+  left: 0;
+  right: 0;
+  background: var(--bg-primary);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-lg);
+  border: 1px solid var(--border-light);
+  list-style: none;
+  margin: 0;
+  padding: var(--space-2);
+  max-height: 300px;
+  overflow-y: auto;
+  animation: fadeInDown var(--duration-fast) var(--ease-out);
+}
+
+@keyframes fadeInDown {
+  from {
+    opacity: 0;
+    transform: translateY(-8px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.search-result-item {
+  display: flex;
+  align-items: center;
+  gap: var(--space-3);
+  padding: var(--space-3);
+  border-radius: var(--radius-md);
+  cursor: pointer;
+  transition: var(--transition-colors);
+}
+
+.search-result-item:hover {
+  background: var(--color-primary-50);
+}
+
+.result-icon {
+  font-size: var(--font-size-lg);
+  flex-shrink: 0;
+}
+
+.result-content {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-0-5);
+  min-width: 0;
+}
+
+.result-name {
+  font-weight: var(--font-weight-medium);
+  color: var(--text-primary);
+  font-size: var(--font-size-sm);
+}
+
+.result-address {
+  font-size: var(--font-size-xs);
+  color: var(--text-tertiary);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+/* --------------------------------------------------------------------------
+   My Location Button
+   -------------------------------------------------------------------------- */
+
+.my-location-btn {
+  width: 44px;
+  height: 44px;
+  border: none;
+  border-radius: var(--radius-xl);
+  background: var(--bg-primary);
+  color: var(--text-secondary);
+  cursor: pointer;
+  box-shadow: var(--shadow-md);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: var(--transition-all);
+  border: 2px solid var(--border-light);
+}
+
+.my-location-btn:hover:not(:disabled) {
+  background: var(--color-primary-50);
+  color: var(--color-primary-600);
+  border-color: var(--color-primary-200);
+}
+
+.my-location-btn:active:not(:disabled) {
+  transform: scale(0.95);
+}
+
+.my-location-btn:disabled {
+  cursor: not-allowed;
+  opacity: 0.7;
+}
+
+.my-location-btn.locating {
+  background: var(--color-primary-50);
+  border-color: var(--color-primary-300);
+}
+
+.location-spinner {
+  width: 20px;
+  height: 20px;
+  border: 2px solid var(--color-primary-200);
+  border-top-color: var(--color-primary-500);
+  border-radius: var(--radius-full);
+  animation: spin 0.8s linear infinite;
+}
+
+/* --------------------------------------------------------------------------
+   Location Error Toast
+   -------------------------------------------------------------------------- */
+
+.location-error {
+  position: absolute;
+  top: calc(100% + var(--space-2));
+  left: 0;
+  background: var(--color-error-50);
+  color: var(--color-error-700);
+  padding: var(--space-2) var(--space-3);
+  border-radius: var(--radius-md);
+  font-size: var(--font-size-xs);
+  font-weight: var(--font-weight-medium);
+  box-shadow: var(--shadow-md);
+  border: 1px solid var(--color-error-100);
+  white-space: nowrap;
+  animation: fadeInDown var(--duration-fast) var(--ease-out);
+}
+
+/* --------------------------------------------------------------------------
+   Layer Selector
+   -------------------------------------------------------------------------- */
+
+.layer-selector {
+  position: fixed;
+  bottom: 100px;
+  right: calc(var(--sidebar-width) + var(--space-4));
+  z-index: 1000;
+}
+
+.layer-btn {
+  width: 44px;
+  height: 44px;
+  border: none;
+  border-radius: var(--radius-xl);
+  background: var(--bg-primary);
+  color: var(--text-secondary);
+  cursor: pointer;
+  box-shadow: var(--shadow-md);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: var(--transition-all);
+  border: 2px solid var(--border-light);
+}
+
+.layer-btn:hover {
+  background: var(--color-primary-50);
+  color: var(--color-primary-600);
+  border-color: var(--color-primary-200);
+}
+
+.layer-btn.active {
+  background: var(--color-primary-50);
+  color: var(--color-primary-600);
+  border-color: var(--color-primary-300);
+}
+
+.layer-menu {
+  position: absolute;
+  bottom: calc(100% + var(--space-2));
+  right: 0;
+  background: var(--bg-primary);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-lg);
+  border: 1px solid var(--border-light);
+  padding: var(--space-2);
+  min-width: 140px;
+  z-index: 1001;
+  animation: fadeInUp var(--duration-fast) var(--ease-out);
+}
+
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(8px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.layer-option {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  gap: var(--space-2);
+  padding: var(--space-2-5) var(--space-3);
+  border: none;
+  background: transparent;
+  border-radius: var(--radius-md);
+  cursor: pointer;
+  transition: var(--transition-colors);
+  text-align: left;
+}
+
+.layer-option:hover {
+  background: var(--color-gray-100);
+}
+
+.layer-option.active {
+  background: var(--color-primary-50);
+  color: var(--color-primary-700);
+}
+
+.layer-icon {
+  font-size: var(--font-size-base);
+  flex-shrink: 0;
+}
+
+.layer-name {
+  flex: 1;
+  font-size: var(--font-size-sm);
+  font-weight: var(--font-weight-medium);
+  color: var(--text-primary);
+}
+
+.layer-option.active .layer-name {
+  color: var(--color-primary-700);
+}
+
+.layer-check {
+  font-size: var(--font-size-sm);
+  color: var(--color-primary-600);
+  font-weight: var(--font-weight-bold);
+}
+
+/* ==========================================================================
+   Mobile Styles
+   ========================================================================== */
+
+@media (max-width: 768px) {
+  .map-controls {
+    top: var(--space-3);
+    left: var(--space-3);
+    right: var(--space-3);
+  }
+
+  .search-container {
+    width: 100%;
+    max-width: calc(100vw - var(--space-6) - 56px);
+  }
+
+  .map-controls {
+    flex-direction: row;
+    align-items: flex-start;
+  }
+
+  .my-location-btn {
+    flex-shrink: 0;
+  }
+
+  .layer-selector {
+    bottom: calc(75vh + 60px);
+    right: var(--space-3);
+  }
+}
+
+@media (max-width: 480px) {
+  .search-container {
+    max-width: calc(100vw - var(--space-6) - 52px);
+  }
+
+  .search-input {
+    height: 40px;
+    font-size: var(--font-size-sm);
+  }
+
+  .my-location-btn {
+    width: 40px;
+    height: 40px;
+  }
+
+  .layer-selector {
+    bottom: calc(75vh + 60px);
+    right: var(--space-3);
+  }
+
+  .layer-btn {
+    width: 40px;
+    height: 40px;
+  }
+
+  .layer-menu {
+    min-width: 130px;
+  }
+}

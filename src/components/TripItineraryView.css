@@ -1,0 +1,323 @@
+/* ==========================================================================
+   Trip Itinerary View Component
+   ========================================================================== */
+
+.trip-itinerary-view {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: var(--bg-primary);
+  z-index: 100;
+  display: flex;
+  flex-direction: column;
+  animation: fadeIn var(--duration-fast) var(--ease-out);
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+/* --------------------------------------------------------------------------
+   Header
+   -------------------------------------------------------------------------- */
+
+.itinerary-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: var(--space-4) var(--space-5);
+  border-bottom: 1px solid var(--border-light);
+  background: var(--bg-secondary);
+  flex-shrink: 0;
+}
+
+.itinerary-title {
+  display: flex;
+  align-items: center;
+  gap: var(--space-3);
+}
+
+.itinerary-title .trip-icon {
+  width: 44px;
+  height: 44px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: var(--radius-md);
+  font-size: var(--font-size-xl);
+}
+
+.title-info {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-0-5);
+}
+
+.title-info h2 {
+  margin: 0;
+  font-size: var(--font-size-lg);
+  font-weight: var(--font-weight-semibold);
+  color: var(--text-primary);
+}
+
+.trip-dates {
+  font-size: var(--font-size-sm);
+  color: var(--text-secondary);
+}
+
+.btn-close-itinerary {
+  width: 36px;
+  height: 36px;
+  border: none;
+  background: var(--color-gray-100);
+  border-radius: var(--radius-md);
+  font-size: var(--font-size-2xl);
+  color: var(--text-secondary);
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: var(--transition-colors);
+}
+
+.btn-close-itinerary:hover {
+  background: var(--color-gray-200);
+  color: var(--text-primary);
+}
+
+/* --------------------------------------------------------------------------
+   Content
+   -------------------------------------------------------------------------- */
+
+.itinerary-content {
+  flex: 1;
+  overflow-x: auto;
+  overflow-y: hidden;
+  padding: var(--space-4);
+}
+
+.itinerary-loading {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
+  color: var(--text-tertiary);
+  font-size: var(--font-size-sm);
+}
+
+/* --------------------------------------------------------------------------
+   Days Container
+   -------------------------------------------------------------------------- */
+
+.days-container {
+  display: flex;
+  gap: var(--space-4);
+  height: 100%;
+  min-width: max-content;
+}
+
+.day-column {
+  width: 280px;
+  min-width: 280px;
+  background: var(--bg-secondary);
+  border-radius: var(--radius-lg);
+  border: 2px solid transparent;
+  display: flex;
+  flex-direction: column;
+  transition: var(--transition-all);
+}
+
+.day-column.drag-over {
+  border-color: var(--color-primary-400);
+  background: var(--color-primary-50);
+}
+
+.day-column.unassigned {
+  background: var(--color-gray-50);
+}
+
+.day-column.unassigned .day-header {
+  background: var(--color-gray-100);
+}
+
+/* --------------------------------------------------------------------------
+   Day Header
+   -------------------------------------------------------------------------- */
+
+.day-header {
+  padding: var(--space-3) var(--space-4);
+  background: var(--color-gray-100);
+  border-radius: var(--radius-lg) var(--radius-lg) 0 0;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.day-number {
+  font-weight: var(--font-weight-semibold);
+  font-size: var(--font-size-sm);
+  color: var(--text-primary);
+}
+
+.day-date {
+  font-size: var(--font-size-xs);
+  color: var(--text-secondary);
+}
+
+/* --------------------------------------------------------------------------
+   Day Pins
+   -------------------------------------------------------------------------- */
+
+.day-pins {
+  flex: 1;
+  overflow-y: auto;
+  padding: var(--space-3);
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-2);
+}
+
+.itinerary-pin {
+  display: flex;
+  align-items: flex-start;
+  gap: var(--space-2);
+  padding: var(--space-3);
+  background: var(--bg-primary);
+  border: 1px solid var(--border-light);
+  border-radius: var(--radius-md);
+  cursor: pointer;
+  transition: var(--transition-all);
+}
+
+.itinerary-pin:hover {
+  border-color: var(--color-primary-300);
+  box-shadow: var(--shadow-sm);
+}
+
+.drag-handle {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 20px;
+  color: var(--text-tertiary);
+  cursor: grab;
+  font-size: var(--font-size-sm);
+  letter-spacing: -2px;
+  flex-shrink: 0;
+  transition: var(--transition-colors);
+}
+
+.drag-handle:hover {
+  color: var(--text-secondary);
+}
+
+.drag-handle:active {
+  cursor: grabbing;
+  color: var(--color-primary-500);
+}
+
+.itinerary-pin .pin-icon {
+  font-size: var(--font-size-base);
+  flex-shrink: 0;
+}
+
+.itinerary-pin .pin-info {
+  flex: 1;
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-0-5);
+}
+
+.itinerary-pin .pin-title {
+  font-size: var(--font-size-sm);
+  font-weight: var(--font-weight-medium);
+  color: var(--text-primary);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.itinerary-pin .pin-location {
+  font-size: var(--font-size-xs);
+  color: var(--text-tertiary);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+/* --------------------------------------------------------------------------
+   Empty State
+   -------------------------------------------------------------------------- */
+
+.empty-day {
+  padding: var(--space-6) var(--space-4);
+  text-align: center;
+  color: var(--text-tertiary);
+  font-size: var(--font-size-sm);
+  border: 2px dashed var(--border-light);
+  border-radius: var(--radius-md);
+  background: var(--bg-primary);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--space-2);
+}
+
+.empty-day .empty-icon {
+  font-size: var(--font-size-2xl);
+  opacity: 0.5;
+}
+
+.day-column.drag-over .empty-day {
+  border-color: var(--color-primary-300);
+  background: var(--color-primary-50);
+  color: var(--color-primary-600);
+}
+
+.day-column.drag-over .empty-day .empty-icon {
+  opacity: 1;
+}
+
+/* --------------------------------------------------------------------------
+   No Dates Message
+   -------------------------------------------------------------------------- */
+
+.no-dates-message {
+  padding: var(--space-6);
+  text-align: center;
+  color: var(--text-secondary);
+  font-size: var(--font-size-sm);
+}
+
+/* --------------------------------------------------------------------------
+   Responsive
+   -------------------------------------------------------------------------- */
+
+@media (max-width: 768px) {
+  .day-column {
+    width: 240px;
+    min-width: 240px;
+  }
+
+  .itinerary-header {
+    padding: var(--space-3) var(--space-4);
+  }
+
+  .itinerary-title .trip-icon {
+    width: 36px;
+    height: 36px;
+    font-size: var(--font-size-lg);
+  }
+
+  .title-info h2 {
+    font-size: var(--font-size-base);
+  }
+}

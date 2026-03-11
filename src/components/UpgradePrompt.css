@@ -1,0 +1,307 @@
+/* ==========================================================================
+   UpgradePrompt Modal
+   ========================================================================== */
+
+/* --------------------------------------------------------------------------
+   Overlay
+   -------------------------------------------------------------------------- */
+
+.upgrade-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: var(--modal-backdrop);
+  backdrop-filter: blur(var(--modal-backdrop-blur));
+  -webkit-backdrop-filter: blur(var(--modal-backdrop-blur));
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: var(--z-modal);
+  padding: var(--space-5);
+  animation: fadeIn var(--duration-fast) var(--ease-out);
+}
+
+/* --------------------------------------------------------------------------
+   Modal
+   -------------------------------------------------------------------------- */
+
+.upgrade-modal {
+  background: var(--bg-primary);
+  border-radius: var(--radius-2xl);
+  max-width: 420px;
+  width: 100%;
+  padding: var(--space-8);
+  position: relative;
+  box-shadow: var(--shadow-modal);
+  animation: scaleIn var(--duration-normal) var(--ease-spring);
+}
+
+/* --------------------------------------------------------------------------
+   Close Button
+   -------------------------------------------------------------------------- */
+
+.upgrade-close {
+  position: absolute;
+  top: var(--space-4);
+  right: var(--space-4);
+  width: 32px;
+  height: 32px;
+  padding: 0;
+  background: var(--color-gray-100);
+  border: none;
+  border-radius: var(--radius-full);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: var(--font-size-lg);
+  color: var(--text-tertiary);
+  cursor: pointer;
+  transition: var(--transition-all);
+}
+
+.upgrade-close:hover {
+  background: var(--color-gray-200);
+  color: var(--text-primary);
+}
+
+/* --------------------------------------------------------------------------
+   Content
+   -------------------------------------------------------------------------- */
+
+.upgrade-content {
+  text-align: center;
+}
+
+/* --------------------------------------------------------------------------
+   Icon
+   -------------------------------------------------------------------------- */
+
+.upgrade-icon {
+  width: 72px;
+  height: 72px;
+  margin: 0 auto var(--space-5);
+  background: var(--color-error-50);
+  border-radius: var(--radius-full);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  animation: iconPulse 2s ease-in-out infinite;
+}
+
+@keyframes iconPulse {
+  0%, 100% {
+    transform: scale(1);
+    box-shadow: 0 0 0 0 rgba(198, 40, 40, 0.2);
+  }
+  50% {
+    transform: scale(1.05);
+    box-shadow: 0 0 0 16px rgba(198, 40, 40, 0);
+  }
+}
+
+.upgrade-icon svg {
+  width: 36px;
+  height: 36px;
+  color: var(--color-error-600);
+}
+
+/* --------------------------------------------------------------------------
+   Title and Description
+   -------------------------------------------------------------------------- */
+
+.upgrade-content h2 {
+  margin: 0 0 var(--space-2);
+  font-size: var(--font-size-2xl);
+  font-weight: var(--font-weight-bold);
+  color: var(--text-primary);
+}
+
+.upgrade-content > p {
+  margin: 0 0 var(--space-6);
+  color: var(--text-secondary);
+  font-size: var(--font-size-base);
+  line-height: var(--line-height-relaxed);
+}
+
+/* --------------------------------------------------------------------------
+   Plan Card
+   -------------------------------------------------------------------------- */
+
+.upgrade-plan {
+  background: var(--gradient-pro);
+  border-radius: var(--radius-xl);
+  padding: var(--space-6);
+  color: var(--text-inverse);
+  position: relative;
+  overflow: hidden;
+}
+
+/* Glass overlay */
+.upgrade-plan::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: var(--gradient-glass);
+  pointer-events: none;
+}
+
+.upgrade-plan h3 {
+  position: relative;
+  margin: 0 0 var(--space-3);
+  font-size: var(--font-size-lg);
+  font-weight: var(--font-weight-semibold);
+}
+
+/* --------------------------------------------------------------------------
+   Price Display
+   -------------------------------------------------------------------------- */
+
+.upgrade-price {
+  position: relative;
+  margin-bottom: var(--space-5);
+  display: flex;
+  align-items: baseline;
+  justify-content: center;
+  gap: var(--space-1);
+}
+
+.upgrade-price .price {
+  font-size: var(--font-size-4xl);
+  font-weight: var(--font-weight-bold);
+  line-height: 1;
+}
+
+.upgrade-price .period {
+  font-size: var(--font-size-base);
+  opacity: 0.85;
+}
+
+/* --------------------------------------------------------------------------
+   Benefits List
+   -------------------------------------------------------------------------- */
+
+.upgrade-benefits {
+  position: relative;
+  list-style: none;
+  padding: 0;
+  margin: 0 0 var(--space-5);
+  text-align: left;
+}
+
+.upgrade-benefits li {
+  display: flex;
+  align-items: center;
+  gap: var(--space-3);
+  padding: var(--space-2) 0;
+  font-size: var(--font-size-sm);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.upgrade-benefits li:last-child {
+  border-bottom: none;
+}
+
+.upgrade-benefits svg {
+  width: 20px;
+  height: 20px;
+  flex-shrink: 0;
+  color: #90EE90;
+}
+
+/* --------------------------------------------------------------------------
+   Upgrade Button
+   -------------------------------------------------------------------------- */
+
+.btn-upgrade-main {
+  position: relative;
+  width: 100%;
+  padding: var(--space-4) var(--space-6);
+  background: var(--bg-primary);
+  color: var(--color-secondary-700);
+  border: none;
+  border-radius: var(--radius-lg);
+  font-size: var(--font-size-base);
+  font-weight: var(--font-weight-bold);
+  cursor: pointer;
+  transition: var(--transition-all);
+  overflow: hidden;
+}
+
+.btn-upgrade-main::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: linear-gradient(to right, transparent, rgba(255, 255, 255, 0.3), transparent);
+  transform: translateX(-100%);
+  transition: transform 0.5s ease;
+}
+
+.btn-upgrade-main:hover::before {
+  transform: translateX(100%);
+}
+
+.btn-upgrade-main:hover:not(:disabled) {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.25);
+}
+
+.btn-upgrade-main:active:not(:disabled) {
+  transform: translateY(0) scale(0.98);
+}
+
+.btn-upgrade-main:disabled {
+  opacity: 0.7;
+  cursor: not-allowed;
+}
+
+/* --------------------------------------------------------------------------
+   Skip Text
+   -------------------------------------------------------------------------- */
+
+.upgrade-skip {
+  position: relative;
+  margin: var(--space-4) 0 0;
+  font-size: var(--font-size-sm);
+  color: var(--text-tertiary);
+}
+
+/* ==========================================================================
+   Mobile Styles
+   ========================================================================== */
+
+@media (max-width: 480px) {
+  .upgrade-modal {
+    padding: var(--space-6);
+    margin: var(--space-4);
+  }
+
+  .upgrade-icon {
+    width: 64px;
+    height: 64px;
+  }
+
+  .upgrade-icon svg {
+    width: 32px;
+    height: 32px;
+  }
+
+  .upgrade-content h2 {
+    font-size: var(--font-size-xl);
+  }
+
+  .upgrade-price .price {
+    font-size: var(--font-size-3xl);
+  }
+
+  .upgrade-plan {
+    padding: var(--space-5);
+  }
+}

@@ -1,0 +1,375 @@
+/* ==========================================================================
+   Pricing Page
+   ========================================================================== */
+
+.pricing-page {
+  min-height: 100vh;
+  background: var(--bg-secondary);
+  padding: var(--space-10) var(--space-5);
+}
+
+/* --------------------------------------------------------------------------
+   Back Link
+   -------------------------------------------------------------------------- */
+
+.back-link {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-2);
+  margin-bottom: var(--space-8);
+  color: var(--color-primary-600);
+  text-decoration: none;
+  font-weight: var(--font-weight-medium);
+  font-size: var(--font-size-sm);
+  transition: color var(--duration-fast) var(--ease-out);
+}
+
+.back-link:hover {
+  color: var(--color-primary-700);
+}
+
+.back-link::before {
+  content: '';
+  width: 16px;
+  height: 16px;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%233b9cea' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cline x1='19' y1='12' x2='5' y2='12'%3E%3C/line%3E%3Cpolyline points='12 19 5 12 12 5'%3E%3C/polyline%3E%3C/svg%3E");
+  background-size: contain;
+  background-repeat: no-repeat;
+}
+
+/* --------------------------------------------------------------------------
+   Header
+   -------------------------------------------------------------------------- */
+
+.pricing-header {
+  text-align: center;
+  margin-bottom: var(--space-10);
+}
+
+.pricing-header h1 {
+  margin: 0 0 var(--space-3);
+  font-size: var(--font-size-4xl);
+  font-weight: var(--font-weight-bold);
+  color: var(--text-primary);
+}
+
+.pricing-header p {
+  margin: 0;
+  color: var(--text-secondary);
+  font-size: var(--font-size-lg);
+}
+
+/* --------------------------------------------------------------------------
+   Notice & Error Messages
+   -------------------------------------------------------------------------- */
+
+.pricing-notice {
+  max-width: 600px;
+  margin: 0 auto var(--space-8);
+  padding: var(--space-4) var(--space-5);
+  background: var(--color-warning-50);
+  border: 1px solid var(--color-warning-100);
+  border-radius: var(--radius-lg);
+  text-align: center;
+  color: var(--color-warning-700);
+  font-size: var(--font-size-sm);
+  font-weight: var(--font-weight-medium);
+}
+
+.pricing-error {
+  max-width: 600px;
+  margin: 0 auto var(--space-8);
+  padding: var(--space-4) var(--space-5);
+  background: var(--color-error-50);
+  border: 1px solid var(--color-error-100);
+  border-radius: var(--radius-lg);
+  text-align: center;
+  color: var(--color-error-700);
+  font-size: var(--font-size-sm);
+  font-weight: var(--font-weight-medium);
+}
+
+/* --------------------------------------------------------------------------
+   Pricing Grid
+   -------------------------------------------------------------------------- */
+
+.pricing-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: var(--space-6);
+  max-width: 760px;
+  margin: 0 auto var(--space-16);
+}
+
+/* --------------------------------------------------------------------------
+   Pricing Card
+   -------------------------------------------------------------------------- */
+
+.pricing-card {
+  background: var(--bg-primary);
+  border-radius: var(--radius-2xl);
+  padding: var(--space-8);
+  box-shadow: var(--shadow-card);
+  position: relative;
+  transition: transform var(--duration-normal) var(--ease-out),
+              box-shadow var(--duration-normal) var(--ease-out);
+}
+
+.pricing-card:hover {
+  transform: translateY(-4px);
+  box-shadow: var(--shadow-card-hover);
+}
+
+/* Featured Pro card */
+.pricing-card.featured {
+  background: var(--gradient-pro);
+  color: var(--text-inverse);
+  box-shadow: var(--shadow-lg);
+}
+
+.pricing-card.featured:hover {
+  box-shadow: 0 20px 40px rgba(118, 75, 162, 0.3);
+}
+
+/* Current plan indicator */
+.pricing-card.current {
+  border: 2px solid var(--color-primary-500);
+}
+
+.pricing-card.featured.current {
+  border: 2px solid rgba(255, 255, 255, 0.3);
+}
+
+/* --------------------------------------------------------------------------
+   Featured Badge
+   -------------------------------------------------------------------------- */
+
+.featured-badge {
+  position: absolute;
+  top: calc(-1 * var(--space-3));
+  left: 50%;
+  transform: translateX(-50%);
+  background: var(--color-warning-500);
+  color: var(--text-inverse);
+  padding: var(--space-1-5) var(--space-4);
+  border-radius: var(--radius-full);
+  font-size: var(--font-size-xs);
+  font-weight: var(--font-weight-bold);
+  letter-spacing: var(--letter-spacing-wider);
+  text-transform: uppercase;
+  box-shadow: var(--shadow-md);
+}
+
+/* --------------------------------------------------------------------------
+   Plan Header
+   -------------------------------------------------------------------------- */
+
+.plan-header {
+  text-align: center;
+  margin-bottom: var(--space-6);
+}
+
+.plan-header h2 {
+  margin: 0 0 var(--space-4);
+  font-size: var(--font-size-xl);
+  font-weight: var(--font-weight-bold);
+}
+
+.plan-price {
+  display: flex;
+  align-items: baseline;
+  justify-content: center;
+  gap: var(--space-1);
+}
+
+.plan-price .price {
+  font-size: 3.5rem;
+  font-weight: var(--font-weight-bold);
+  line-height: 1;
+}
+
+.plan-price .period {
+  font-size: var(--font-size-base);
+  opacity: 0.8;
+}
+
+/* --------------------------------------------------------------------------
+   Plan Features
+   -------------------------------------------------------------------------- */
+
+.plan-features {
+  list-style: none;
+  padding: 0;
+  margin: 0 0 var(--space-6);
+}
+
+.plan-features li {
+  display: flex;
+  align-items: center;
+  gap: var(--space-3);
+  padding: var(--space-3) 0;
+  border-bottom: 1px solid var(--border-light);
+  font-size: var(--font-size-sm);
+}
+
+.pricing-card.featured .plan-features li {
+  border-bottom-color: rgba(255, 255, 255, 0.1);
+}
+
+.plan-features li:last-child {
+  border-bottom: none;
+}
+
+.feature-check {
+  color: var(--color-success-500);
+  font-size: var(--font-size-lg);
+  font-weight: var(--font-weight-bold);
+}
+
+.pricing-card.featured .feature-check {
+  color: #90EE90;
+}
+
+/* --------------------------------------------------------------------------
+   Current Plan Badge
+   -------------------------------------------------------------------------- */
+
+.current-plan-badge {
+  text-align: center;
+  padding: var(--space-3) var(--space-4);
+  background: var(--color-primary-50);
+  border-radius: var(--radius-lg);
+  color: var(--color-primary-700);
+  font-weight: var(--font-weight-semibold);
+  font-size: var(--font-size-sm);
+}
+
+.pricing-card.featured .current-plan-badge {
+  background: rgba(255, 255, 255, 0.2);
+  color: var(--text-inverse);
+}
+
+/* --------------------------------------------------------------------------
+   Upgrade Button
+   -------------------------------------------------------------------------- */
+
+.btn-upgrade {
+  width: 100%;
+  height: var(--btn-height-lg);
+  padding: 0 var(--space-6);
+  background: var(--bg-primary);
+  color: var(--color-secondary-700);
+  border: none;
+  border-radius: var(--radius-lg);
+  font-size: var(--font-size-base);
+  font-weight: var(--font-weight-bold);
+  cursor: pointer;
+  transition: var(--transition-all);
+  position: relative;
+  overflow: hidden;
+}
+
+.btn-upgrade::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: linear-gradient(to right, transparent, rgba(255, 255, 255, 0.3), transparent);
+  transform: translateX(-100%);
+  transition: transform 0.5s ease;
+}
+
+.btn-upgrade:hover::before {
+  transform: translateX(100%);
+}
+
+.btn-upgrade:hover:not(:disabled) {
+  transform: scale(1.02);
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+}
+
+.btn-upgrade:active:not(:disabled) {
+  transform: scale(0.98);
+}
+
+.btn-upgrade:disabled {
+  opacity: 0.7;
+  cursor: not-allowed;
+}
+
+/* --------------------------------------------------------------------------
+   FAQ Section
+   -------------------------------------------------------------------------- */
+
+.pricing-faq {
+  max-width: 640px;
+  margin: 0 auto;
+}
+
+.pricing-faq h3 {
+  text-align: center;
+  margin-bottom: var(--space-6);
+  font-size: var(--font-size-xl);
+  font-weight: var(--font-weight-bold);
+  color: var(--text-primary);
+}
+
+.faq-item {
+  background: var(--bg-primary);
+  padding: var(--space-5);
+  border-radius: var(--radius-xl);
+  margin-bottom: var(--space-4);
+  box-shadow: var(--shadow-sm);
+  transition: box-shadow var(--duration-fast) var(--ease-out);
+}
+
+.faq-item:hover {
+  box-shadow: var(--shadow-md);
+}
+
+.faq-item strong {
+  display: block;
+  margin-bottom: var(--space-2);
+  color: var(--text-primary);
+  font-size: var(--font-size-base);
+  font-weight: var(--font-weight-semibold);
+}
+
+.faq-item p {
+  margin: 0;
+  color: var(--text-secondary);
+  font-size: var(--font-size-sm);
+  line-height: var(--line-height-relaxed);
+}
+
+/* ==========================================================================
+   Mobile Styles
+   ========================================================================== */
+
+@media (max-width: 600px) {
+  .pricing-page {
+    padding: var(--space-6) var(--space-4);
+  }
+
+  .pricing-header h1 {
+    font-size: var(--font-size-2xl);
+  }
+
+  .pricing-header p {
+    font-size: var(--font-size-base);
+  }
+
+  .pricing-card {
+    padding: var(--space-6);
+  }
+
+  .plan-price .price {
+    font-size: 2.75rem;
+  }
+
+  .pricing-grid {
+    gap: var(--space-5);
+  }
+}

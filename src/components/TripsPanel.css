@@ -1,0 +1,395 @@
+/* ==========================================================================
+   Trips Panel Component
+   ========================================================================== */
+
+.trips-panel {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: var(--bg-primary);
+  z-index: 10;
+  display: flex;
+  flex-direction: column;
+  animation: slideInFromRight var(--duration-fast) var(--ease-out);
+}
+
+@keyframes slideInFromRight {
+  from {
+    opacity: 0;
+    transform: translateX(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+/* --------------------------------------------------------------------------
+   Header
+   -------------------------------------------------------------------------- */
+
+.trips-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: var(--space-4) var(--space-5);
+  border-bottom: 1px solid var(--border-light);
+  background: var(--bg-secondary);
+}
+
+.trips-header h3 {
+  margin: 0;
+  font-size: var(--font-size-base);
+  font-weight: var(--font-weight-semibold);
+  color: var(--text-primary);
+}
+
+.trips-panel .btn-close {
+  width: 32px;
+  height: 32px;
+  border: none;
+  background: var(--color-gray-100);
+  border-radius: var(--radius-md);
+  font-size: var(--font-size-xl);
+  color: var(--text-secondary);
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: var(--transition-colors);
+}
+
+.trips-panel .btn-close:hover {
+  background: var(--color-gray-200);
+  color: var(--text-primary);
+}
+
+/* --------------------------------------------------------------------------
+   Content
+   -------------------------------------------------------------------------- */
+
+.trips-content {
+  flex: 1;
+  overflow-y: auto;
+  padding: var(--space-4);
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-2);
+}
+
+/* --------------------------------------------------------------------------
+   New Trip Button & Form
+   -------------------------------------------------------------------------- */
+
+.btn-new-trip {
+  display: flex;
+  align-items: center;
+  gap: var(--space-3);
+  width: 100%;
+  padding: var(--space-4);
+  border: 2px dashed var(--border-default);
+  border-radius: var(--radius-lg);
+  background: transparent;
+  color: var(--text-secondary);
+  font-size: var(--font-size-sm);
+  font-weight: var(--font-weight-medium);
+  cursor: pointer;
+  transition: var(--transition-all);
+}
+
+.btn-new-trip:hover {
+  border-color: var(--color-primary-400);
+  background: var(--color-primary-50);
+  color: var(--color-primary-700);
+}
+
+.trips-panel .plus-icon {
+  width: 32px;
+  height: 32px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--color-gray-100);
+  border-radius: var(--radius-md);
+  font-size: var(--font-size-xl);
+}
+
+.btn-new-trip:hover .plus-icon {
+  background: var(--color-primary-100);
+}
+
+.new-trip-form {
+  padding: var(--space-4);
+  background: var(--color-gray-50);
+  border-radius: var(--radius-lg);
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-4);
+}
+
+.form-section {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-2);
+}
+
+.section-label {
+  font-size: var(--font-size-xs);
+  font-weight: var(--font-weight-semibold);
+  color: var(--text-secondary);
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.new-trip-form input[type="text"] {
+  width: 100%;
+  padding: var(--space-3);
+  border: 1px solid var(--border-light);
+  border-radius: var(--radius-md);
+  font-size: var(--font-size-sm);
+  background: var(--bg-primary);
+}
+
+.new-trip-form input:focus {
+  outline: none;
+  border-color: var(--color-primary-500);
+  box-shadow: var(--shadow-focus);
+}
+
+.form-section input[type="text"] + input[type="text"] {
+  margin-top: var(--space-2);
+}
+
+/* Date Inputs */
+.date-inputs {
+  display: flex;
+  gap: var(--space-3);
+}
+
+.date-field {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-1);
+}
+
+.date-field label {
+  font-size: var(--font-size-xs);
+  color: var(--text-secondary);
+  font-weight: var(--font-weight-medium);
+}
+
+.date-field input[type="date"] {
+  width: 100%;
+  padding: var(--space-2) var(--space-2-5);
+  border: 1px solid var(--border-light);
+  border-radius: var(--radius-md);
+  font-size: var(--font-size-sm);
+  background: var(--bg-primary);
+  color: var(--text-primary);
+}
+
+.date-field input[type="date"]:focus {
+  outline: none;
+  border-color: var(--color-primary-500);
+  box-shadow: var(--shadow-focus);
+}
+
+/* Icon Picker */
+.trips-panel .icon-picker {
+  display: flex;
+  gap: var(--space-2);
+}
+
+.trips-panel .icon-option {
+  width: 36px;
+  height: 36px;
+  border: 2px solid var(--border-light);
+  border-radius: var(--radius-md);
+  background: var(--bg-primary);
+  font-size: var(--font-size-lg);
+  cursor: pointer;
+  transition: var(--transition-all);
+}
+
+.trips-panel .icon-option:hover {
+  border-color: var(--color-primary-300);
+}
+
+.trips-panel .icon-option.active {
+  border-color: var(--color-primary-500);
+  background: var(--color-primary-50);
+}
+
+/* Color Picker */
+.trips-panel .color-picker {
+  display: flex;
+  gap: var(--space-2);
+}
+
+.trips-panel .color-option {
+  width: 28px;
+  height: 28px;
+  border: 3px solid transparent;
+  border-radius: var(--radius-full);
+  cursor: pointer;
+  transition: var(--transition-all);
+}
+
+.trips-panel .color-option:hover {
+  transform: scale(1.15);
+}
+
+.trips-panel .color-option.active {
+  border-color: var(--text-primary);
+  transform: scale(1.15);
+}
+
+/* Form Actions */
+.new-trip-form .form-actions {
+  display: flex;
+  gap: var(--space-2);
+}
+
+.trips-panel .btn-create,
+.trips-panel .btn-cancel {
+  flex: 1;
+  padding: var(--space-2-5) var(--space-4);
+  border: none;
+  border-radius: var(--radius-md);
+  font-size: var(--font-size-sm);
+  font-weight: var(--font-weight-medium);
+  cursor: pointer;
+  transition: var(--transition-colors);
+}
+
+.trips-panel .btn-create {
+  background: var(--color-primary-500);
+  color: var(--text-inverse);
+}
+
+.trips-panel .btn-create:hover {
+  background: var(--color-primary-600);
+}
+
+.trips-panel .btn-cancel {
+  background: var(--color-gray-100);
+  color: var(--text-secondary);
+}
+
+.trips-panel .btn-cancel:hover {
+  background: var(--color-gray-200);
+}
+
+/* --------------------------------------------------------------------------
+   Trip Items
+   -------------------------------------------------------------------------- */
+
+.trip-item {
+  display: flex;
+  align-items: center;
+  gap: var(--space-3);
+  width: 100%;
+  padding: var(--space-3) var(--space-4);
+  border: 1px solid var(--border-light);
+  border-radius: var(--radius-lg);
+  background: var(--bg-primary);
+  cursor: pointer;
+  transition: var(--transition-all);
+  text-align: left;
+}
+
+.trip-item:hover {
+  border-color: var(--color-primary-200);
+  background: var(--color-primary-50);
+}
+
+.trip-item.active {
+  border-color: var(--color-primary-500);
+  background: var(--color-primary-50);
+}
+
+.trip-icon-badge {
+  width: 44px;
+  height: 44px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: var(--radius-md);
+  font-size: var(--font-size-xl);
+  flex-shrink: 0;
+}
+
+.trip-info {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-0-5);
+  min-width: 0;
+}
+
+.trip-name {
+  font-weight: var(--font-weight-medium);
+  color: var(--text-primary);
+  font-size: var(--font-size-sm);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.trip-meta {
+  font-size: var(--font-size-xs);
+  color: var(--text-secondary);
+}
+
+.trip-pins {
+  font-size: var(--font-size-xs);
+  color: var(--text-tertiary);
+}
+
+.trip-actions {
+  display: flex;
+  gap: var(--space-1);
+  flex-shrink: 0;
+}
+
+.btn-view-itinerary,
+.btn-delete-trip {
+  display: flex;
+  align-items: center;
+  gap: var(--space-1);
+  padding: var(--space-1-5) var(--space-2);
+  border: 1px solid var(--border-light);
+  border-radius: var(--radius-md);
+  background: var(--bg-primary);
+  cursor: pointer;
+  font-size: var(--font-size-xs);
+  color: var(--text-secondary);
+  transition: var(--transition-all);
+}
+
+.btn-view-itinerary:hover {
+  background: var(--color-primary-50);
+  border-color: var(--color-primary-300);
+  color: var(--color-primary-700);
+}
+
+.btn-delete-trip:hover {
+  background: var(--color-error-50);
+  border-color: var(--color-error-300);
+  color: var(--color-error-600);
+}
+
+/* --------------------------------------------------------------------------
+   Empty & Loading States
+   -------------------------------------------------------------------------- */
+
+.trips-panel .loading-text,
+.trips-panel .empty-text {
+  padding: var(--space-6);
+  text-align: center;
+  color: var(--text-tertiary);
+  font-size: var(--font-size-sm);
+}
