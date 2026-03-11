@@ -49,10 +49,10 @@ function Login() {
     <div className="login-page">
       <div className="login-map-background">
         <MapContainer
-          center={[30, 0]}
-          zoom={3}
-          minZoom={3}
-          maxZoom={3}
+          center={[20, 0]}
+          zoom={2}
+          minZoom={2}
+          maxZoom={2}
           zoomControl={false}
           dragging={false}
           scrollWheelZoom={false}
@@ -60,7 +60,6 @@ function Login() {
           touchZoom={false}
           keyboard={false}
           attributionControl={false}
-          style={{ width: '100%', height: '100%' }}
         >
           <TileLayer
             url="https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}{r}.png"
